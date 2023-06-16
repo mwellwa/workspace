@@ -1,8 +1,13 @@
 defmodule WorkspaceWeb.ProjectsLive do
   use WorkspaceWeb, :live_view
 
-  def mount(_params, _session, socket) do
-    {:ok, assign(socket, total_projects: 0, message: "Create or delete project")}
+  def mount(_params, session, socket) do
+    {:ok,
+     assign(socket,
+       total_projects: 0,
+       message: "Create or delete project",
+       session_id: session["live_socket_id"]
+     )}
   end
 
   def render(assigns) do
