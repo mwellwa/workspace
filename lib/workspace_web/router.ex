@@ -68,7 +68,14 @@ defmodule WorkspaceWeb.Router do
       on_mount: [{WorkspaceWeb.UserAuth, :ensure_authenticated}] do
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
-      live "/projects", ProjectsLive
+      live "/dashboard", DashboardLive
+
+      live "/projects", ProjectLive.Index, :index
+      live "/projects/new", ProjectLive.Index, :new
+      live "/projects/:id/edit", ProjectLive.Index, :edit
+
+      live "/projects/:id", ProjectLive.Show, :show
+      live "/projects/:id/show/edit", ProjectLive.Show, :edit
     end
   end
 

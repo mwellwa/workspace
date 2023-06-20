@@ -1,4 +1,4 @@
-defmodule WorkspaceWeb.ProjectsLive do
+defmodule WorkspaceWeb.DashboardLive do
   use WorkspaceWeb, :live_view
 
   def mount(_params, session, socket) do
