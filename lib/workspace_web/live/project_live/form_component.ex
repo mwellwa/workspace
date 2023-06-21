@@ -19,16 +19,34 @@ defmodule WorkspaceWeb.ProjectLive.FormComponent do
         phx-change="validate"
         phx-submit="save"
       >
-        <.input field={@form[:project_name]} type="text" label="Project name" />
-        <.input field={@form[:client_name]} type="text" label="Client name" />
-        <.input field={@form[:client_contact]} type="text" label="Client contact" />
-        <.input field={@form[:description]} type="text" label="Description" />
-        <.input field={@form[:status]} type="text" label="Status" />
+        <div class="flex gap-x-4">
+          <div class="w-1/2">
+            <.input field={@form[:project_name]} type="text" label="Name" />
+          </div>
+          <div class="w-1/2">
+            <.input field={@form[:client_name]} type="text" label="Client" />
+          </div>
+        </div>
+        <div class="flex gap-x-4">
+          <div class="w-4/6">
+            <.input field={@form[:client_contact]} type="text" label="Client contact" />
+          </div>
+          <div class="w-2/6">
+            <.input field={@form[:status]} type="text" label="Status" />
+          </div>
+        </div>
+        <.input field={@form[:description]} type="textarea" label="Description" />
+        <div class="flex gap-x-4">
+          <div class="w-1/2">
+            <.input field={@form[:start_date]} type="date" label="Start date" />
+          </div>
+          <div class="w-1/2">
+            <.input field={@form[:end_date]} type="date" label="End date" />
+          </div>
+        </div>
         <.input field={@form[:risks]} type="text" label="Risks" />
-        <.input field={@form[:start_date]} type="date" label="Start date" />
-        <.input field={@form[:end_date]} type="date" label="End date" />
         <:actions>
-          <.button phx-disable-with="Saving...">Save Project</.button>
+            <.button phx-disable-with="Saving...">Save Project</.button>
         </:actions>
       </.simple_form>
     </div>
