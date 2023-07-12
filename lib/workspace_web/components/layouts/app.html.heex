@@ -9,15 +9,17 @@
       </a>
     </div>
     <div class="flex items-center gap-4 font-semibold leading-6 text-zinc-900">
-      <a href="/dashboard" class="hover:text-zinc-700">
-        Home
-      </a>
-      <a href="/projects" class="hover:text-zinc-700">
-        Projects
-      </a>
-      <a href="" class="hover:text-zinc-700">
-        Clients
-      </a>
+      <%= if @current_user do %>
+        <a href="/dashboard" class="hover:text-zinc-700">
+          Home
+        </a>
+        <a href="/projects" class="hover:text-zinc-700">
+          Projects
+        </a>
+        <a href="" class="hover:text-zinc-700">
+          Clients
+        </a>
+      <% end %>
     </div>
   </div>
 </header>

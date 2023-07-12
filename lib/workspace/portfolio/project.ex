@@ -3,14 +3,15 @@ defmodule Workspace.Portfolio.Project do
   import Ecto.Changeset
 
   schema "projects" do
-    field :client_contact, :string
-    field :client_name, :string
+    field :contact, :string
+    field :client, :string
     field :description, :string
     field :end_date, :date
-    field :project_name, :string
+    field :name, :string
     field :risks, :string
     field :start_date, :date
     field :status, :string
+    field :business_requirement_document, :string
 
     timestamps()
   end
@@ -18,7 +19,26 @@ defmodule Workspace.Portfolio.Project do
   @doc false
   def changeset(project, attrs) do
     project
-    |> cast(attrs, [:project_name, :client_name, :client_contact, :description, :status, :risks, :start_date, :end_date])
-    |> validate_required([:project_name, :client_name, :client_contact, :description, :status, :risks, :start_date, :end_date])
+    |> cast(attrs, [
+      :name,
+      :client,
+      :contact,
+      :description,
+      :status,
+      :risks,
+      :start_date,
+      :end_date,
+      :business_requirement_document
+    ])
+    |> validate_required([
+      :name,
+      :client,
+      :contact,
+      :description,
+      :status,
+      :risks,
+      :start_date,
+      :end_date
+    ])
   end
 end

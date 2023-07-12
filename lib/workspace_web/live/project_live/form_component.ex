@@ -15,24 +15,25 @@ defmodule WorkspaceWeb.ProjectLive.FormComponent do
       <.simple_form
         for={@form}
         id="project-form"
+        multipart
         phx-target={@myself}
         phx-change="validate"
         phx-submit="save"
       >
         <div class="flex gap-x-4">
           <div class="w-1/2">
-            <.input field={@form[:project_name]} type="text" label="Name" />
+            <.input field={@form[:name]} type="text" label="Name" />
           </div>
           <div class="w-1/2">
-            <.input field={@form[:client_name]} type="text" label="Client" />
+            <.input field={@form[:client]} type="text" label="Client" />
           </div>
         </div>
         <div class="flex gap-x-4">
           <div class="w-4/6">
-            <.input field={@form[:client_contact]} type="text" label="Client contact" />
+            <.input field={@form[:contact]} type="text" label="Contact" />
           </div>
           <div class="w-2/6">
-            <.input field={@form[:status]} type="text" label="Status" />
+            <.input field={@form[:status]} type="hidden" value="Pending Approval" />
           </div>
         </div>
         <.input field={@form[:description]} type="textarea" label="Description" />
@@ -45,8 +46,9 @@ defmodule WorkspaceWeb.ProjectLive.FormComponent do
           </div>
         </div>
         <.input field={@form[:risks]} type="text" label="Risks" />
+
         <:actions>
-            <.button phx-disable-with="Saving...">Save Project</.button>
+          <.button phx-disable-with="Saving...">Save Project</.button>
         </:actions>
       </.simple_form>
     </div>

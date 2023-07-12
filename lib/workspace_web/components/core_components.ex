@@ -175,7 +175,7 @@ defmodule WorkspaceWeb.CoreComponents do
   attr :as, :any, default: nil, doc: "the server side parameter to collect all input under"
 
   attr :rest, :global,
-    include: ~w(autocomplete name rel action enctype method novalidate target),
+    include: ~w(autocomplete name rel action enctype method novalidate target multipart),
     doc: "the arbitrary HTML attributes to apply to the form tag"
 
   slot :inner_block, required: true
@@ -445,7 +445,9 @@ defmodule WorkspaceWeb.CoreComponents do
       <table class="w-[40rem] mt-11 border sm:w-full">
         <thead class="bg-gray-50 text-sm text-left leading-6 text-gray-500">
           <tr>
-            <th :for={col <- @col} class="pl-2 pr-6 py-3 font-semibold uppercase"><%= col[:label] %></th>
+            <th :for={col <- @col} class="pl-2 pr-6 py-3 font-semibold uppercase">
+              <%= col[:label] %>
+            </th>
             <th class="relative p-0 py-3"><span class="sr-only"><%= gettext("Actions") %></span></th>
           </tr>
         </thead>
