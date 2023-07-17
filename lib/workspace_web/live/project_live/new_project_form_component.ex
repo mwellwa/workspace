@@ -1,4 +1,4 @@
-defmodule WorkspaceWeb.ProjectLive.FormComponent do
+defmodule WorkspaceWeb.ProjectLive.NewProjectFormComponent do
   use WorkspaceWeb, :live_component
 
   alias Workspace.Portfolio
@@ -20,30 +20,12 @@ defmodule WorkspaceWeb.ProjectLive.FormComponent do
         phx-change="validate"
         phx-submit="save"
       >
-        <div class="flex gap-x-4">
-          <div class="w-1/2">
-            <.input field={@form[:name]} type="text" label="Name" />
-          </div>
-
+        <div>
+          <.input field={@form[:name]} type="text" label="Name" />
         </div>
-        <div class="flex gap-x-4">
-          <div class="w-4/6">
-            <.input field={@form[:contact]} type="text" label="Contact" />
-          </div>
-          <div class="w-2/6">
-            <.input field={@form[:status]} type="hidden" value="Pending Approval" />
-          </div>
+        <div>
+          <.input field={@form[:name]} type="text" label="Client" />
         </div>
-        <.input field={@form[:description]} type="textarea" label="Description" />
-        <div class="flex gap-x-4">
-          <div class="w-1/2">
-            <.input field={@form[:start_date]} type="date" label="Start date" />
-          </div>
-          <div class="w-1/2">
-            <.input field={@form[:end_date]} type="date" label="End date" />
-          </div>
-        </div>
-        <.input field={@form[:risks]} type="text" label="Risks" />
 
         <:actions>
           <.button phx-disable-with="Saving...">Save Project</.button>

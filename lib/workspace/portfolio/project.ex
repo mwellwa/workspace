@@ -2,9 +2,10 @@ defmodule Workspace.Portfolio.Project do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Workspace.Clients.Client
+
   schema "projects" do
     field :contact, :string
-    field :client, :string
     field :description, :string
     field :end_date, :date
     field :name, :string
@@ -12,6 +13,7 @@ defmodule Workspace.Portfolio.Project do
     field :start_date, :date
     field :status, :string
     field :business_requirement_document, :string
+    belongs_to :client, Client
 
     timestamps()
   end
@@ -21,24 +23,20 @@ defmodule Workspace.Portfolio.Project do
     project
     |> cast(attrs, [
       :name,
-      :client,
       :contact,
       :description,
       :status,
       :risks,
       :start_date,
       :end_date,
-      :business_requirement_document
+      :business_requirement_document,
+      :client_id
     ])
     |> validate_required([
       :name,
-      :client,
       :contact,
       :description,
-      :status,
-      :risks,
-      :start_date,
-      :end_date
+      :client_id
     ])
   end
 end

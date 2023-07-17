@@ -73,9 +73,14 @@ defmodule WorkspaceWeb.Router do
       live "/projects", ProjectLive.Index, :index
       live "/projects/new", ProjectLive.Index, :new
       live "/projects/:id/edit", ProjectLive.Index, :edit
-
       live "/projects/:id", ProjectLive.Show, :show
       live "/projects/:id/show/edit", ProjectLive.Show, :edit
+
+      live "/clients", ClientLive.Index, :index
+      live "/clients/new", ClientLive.Index, :new
+      live "/clients/:id/edit", ClientLive.Index, :edit
+      live "/clients/:id", ClientLive.Show, :show
+      live "/clients/:id/show/edit", ClientLive.Show, :edit
     end
   end
 

@@ -1,12 +1,15 @@
 defmodule WorkspaceWeb.ProjectLive.Index do
   use WorkspaceWeb, :live_view
 
+  alias Workspace.Clients
   alias Workspace.Portfolio
   alias Workspace.Portfolio.Project
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, stream(socket, :projects, Portfolio.list_projects())}
+    projects = Portfolio.list_projects_with_client()
+
+    {:ok, stream(socket, :projects, projects)}
   end
 
   @impl true
@@ -21,6 +24,8 @@ defmodule WorkspaceWeb.ProjectLive.Index do
   end
 
   defp apply_action(socket, :new, _params) do
+    IO.inspect(socket)
+
     socket
     |> assign(:page_title, "New Project")
     |> assign(:project, %Project{})

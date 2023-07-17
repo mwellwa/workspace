@@ -5,7 +5,6 @@ defmodule Workspace.Portfolio do
 
   import Ecto.Query, warn: false
   alias Workspace.Repo
-
   alias Workspace.Portfolio.Project
 
   @doc """
@@ -19,6 +18,10 @@ defmodule Workspace.Portfolio do
   """
   def list_projects do
     Repo.all(Project)
+  end
+
+  def list_projects_with_client do
+    Repo.all(Project) |> Repo.preload(:client)
   end
 
   @doc """
