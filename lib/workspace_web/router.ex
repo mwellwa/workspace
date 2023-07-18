@@ -69,6 +69,7 @@ defmodule WorkspaceWeb.Router do
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
       live "/dashboard", DashboardLive
+      live "/autocomplete", ItemSearchLive, :index
 
       live "/projects", ProjectLive.Index, :index
       live "/projects/new", ProjectLive.Index, :new

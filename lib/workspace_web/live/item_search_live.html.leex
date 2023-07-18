@@ -1,0 +1,82 @@
+<div class="px-6">
+  <h2>Item search</h2>
+
+  <script>
+    // we add a global autocomplete function
+    // which will handle our client-side logic.
+    // we extend this later on...
+    function autocomplete() {
+      return {
+        isOpen: false,
+        open() { this.isOpen = true; }
+        close() { this.isOpen = false; }
+      }
+    }
+  </script>
+
+  <div
+    class="relative"
+    x-data="autocomplete()"
+    @click.away="close"
+  >
+    <form phx-submit="submit" phx-change="suggest">
+      <div>
+        <label for="search">
+          Pick some items:
+        </label>
+        <input
+          id="search-input"
+          name="search"
+          type="text"
+          x-on:focus="open"
+          phx-debounce="300"
+          placeholder="Search for an item..."
+        />
+      </div>
+
+      <div class="w-full rounded-md bg-white shadow-md overflow-auto max-h-64">
+        <%= if Enum.any?(@suggestions) do %>
+        <ul
+        class="relative list-none p-0 m-0"
+          id="autocomplete-suggestions"
+          x-show="isOpen"
+          x-ref="suggestions"
+        >
+        <%= for {item, index} <- Enum.with_index(@suggestions) do %>
+          <li
+            id="item-<%= index %>"
+            x-ref="item-<%= index %>"
+            phx-click="select"
+            phx-value-id="<%= item.id %>"
+            class="flex items-center py-3 px-4 hover:cursor-pointer hover:bg-sky-100 focus:bg-sky-400"
+          >
+            <span class="text-base">
+              <%= item.name %>
+            </span>
+          </li>
+          <% end %>
+        </ul>
+        <% end %>
+      </div>
+    </form>
+  </div>
+
+  <div>
+    <h4 class="text-xl font-bold">Selected items</h4>
+
+    <div>
+      <%= if Enum.any?(@selected) do %>
+      <ul class="list-none p-0">
+        <%= for {item, index} <- Enum.with_index(@selected) do %>
+        <li id="selected-item-<%= index %>"
+        class="flex items-center py-3 px-4 rounded-md mb-3 border border-gray-300">
+          <span>
+            <%= item.name %>
+          </span>
+        </li>
+        <% end %>
+      </ul>
+      <% end %>
+    </div>
+  </div>
+</div>
