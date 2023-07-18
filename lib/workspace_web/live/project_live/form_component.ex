@@ -1,7 +1,7 @@
 defmodule WorkspaceWeb.ProjectLive.FormComponent do
   use WorkspaceWeb, :live_component
 
-  alias Workspace.Portfolio
+  alias Workspace.Projects
 
   @impl true
   def render(assigns) do
@@ -55,7 +55,7 @@ defmodule WorkspaceWeb.ProjectLive.FormComponent do
 
   @impl true
   def update(%{project: project} = assigns, socket) do
-    changeset = Portfolio.change_project(project)
+    changeset = Projects.change_project(project)
 
     {:ok,
      socket
@@ -67,7 +67,7 @@ defmodule WorkspaceWeb.ProjectLive.FormComponent do
   def handle_event("validate", %{"project" => project_params}, socket) do
     changeset =
       socket.assigns.project
-      |> Portfolio.change_project(project_params)
+      |> Projects.change_project(project_params)
       |> Map.put(:action, :validate)
 
     {:noreply, assign_form(socket, changeset)}
@@ -78,7 +78,7 @@ defmodule WorkspaceWeb.ProjectLive.FormComponent do
   end
 
   defp save_project(socket, :edit, project_params) do
-    case Portfolio.update_project(socket.assigns.project, project_params) do
+    case Projects.update_project(socket.assigns.project, project_params) do
       {:ok, project} ->
         notify_parent({:saved, project})
 
@@ -93,7 +93,7 @@ defmodule WorkspaceWeb.ProjectLive.FormComponent do
   end
 
   defp save_project(socket, :new, project_params) do
-    case Portfolio.create_project(project_params) do
+    case Projects.create_project(project_params) do
       {:ok, project} ->
         notify_parent({:saved, project})
 

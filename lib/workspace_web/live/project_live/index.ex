@@ -1,13 +1,13 @@
 defmodule WorkspaceWeb.ProjectLive.Index do
   use WorkspaceWeb, :live_view
 
-  alias Workspace.Clients
-  alias Workspace.Portfolio
-  alias Workspace.Portfolio.Project
+  # alias Workspace.Clients
+  alias Workspace.Projects
+  alias Workspace.Projects.Project
 
   @impl true
   def mount(_params, _session, socket) do
-    projects = Portfolio.list_projects_with_client()
+    projects = Projects.list_projects_with_client()
 
     {:ok, stream(socket, :projects, projects)}
   end
@@ -20,7 +20,7 @@ defmodule WorkspaceWeb.ProjectLive.Index do
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
     |> assign(:page_title, "Edit Project")
-    |> assign(:project, Portfolio.get_project!(id))
+    |> assign(:project, Projects.get_project!(id))
   end
 
   defp apply_action(socket, :new, _params) do
@@ -44,8 +44,8 @@ defmodule WorkspaceWeb.ProjectLive.Index do
 
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
-    project = Portfolio.get_project!(id)
-    {:ok, _} = Portfolio.delete_project(project)
+    project = Projects.get_project!(id)
+    {:ok, _} = Projects.delete_project(project)
 
     {:noreply, stream_delete(socket, :projects, project)}
   end

@@ -1,7 +1,7 @@
 defmodule WorkspaceWeb.ProjectLive.Show do
   use WorkspaceWeb, :live_view
 
-  alias Workspace.Portfolio
+  alias Workspace.Projects
 
   @impl true
   def mount(_params, _session, socket) do
@@ -13,7 +13,7 @@ defmodule WorkspaceWeb.ProjectLive.Show do
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:project, Portfolio.get_project!(id))}
+     |> assign(:project, Projects.get_project!(id))}
   end
 
   defp page_title(:show), do: "Show Project"

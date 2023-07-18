@@ -1,4 +1,4 @@
-defmodule Workspace.Portfolio.Project do
+defmodule Workspace.Projects.Project do
   use Ecto.Schema
   import Ecto.Changeset
 

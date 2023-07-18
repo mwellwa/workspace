@@ -1,11 +1,11 @@
-defmodule Workspace.Portfolio do
+defmodule Workspace.Projects do
   @moduledoc """
   The Portfolio context.
   """
 
   import Ecto.Query, warn: false
   alias Workspace.Repo
-  alias Workspace.Portfolio.Project
+  alias Workspace.Projects.Project
 
   @doc """
   Returns the list of projects.

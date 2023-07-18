@@ -2,7 +2,7 @@ defmodule Workspace.Clients.Client do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Workspace.Portfolio.Project
+  alias Workspace.Projects.Project
 
   schema "clients" do
     field :country, :string
