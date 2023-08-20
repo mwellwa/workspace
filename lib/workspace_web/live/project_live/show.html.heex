@@ -8,25 +8,62 @@
   </:actions>
 </.header>
 
-<.list>
-  <:item title="Name"><%= @project.name %></:item>
-  <:item title="Contact"><%= @project.contact %></:item>
-  <:item title="Description"><%= @project.description %></:item>
-  <:item title="Status"><%= @project.status %></:item>
-  <:item title="Risks"><%= @project.risks %></:item>
-  <:item title="Start date"><%= @project.start_date %></:item>
-  <:item title="End date"><%= @project.end_date %></:item>
-</.list>
-
 <.back navigate={~p"/projects"}>Back to projects</.back>
 
-<.modal :if={@live_action == :edit} id="project-modal" show on_cancel={JS.patch(~p"/projects/#{@project}")}>
+<section>
+  <h2 class="text-lg">Documentation Checklist</h2>
+  <br />
+  <DocumentationLive.Index.document_list documents={@documents} project={@project} />
+</section>
+
+<.modal
+  :if={@live_action == :edit}
+  id="project-modal"
+  show
+  on_cancel={JS.patch(~p"/projects/#{@project}")}
+>
   <.live_component
-    module={WorkspaceWeb.ProjectLive.FormComponent}
+    module={WorkspaceWeb.ProjectLive.EditFormComponent}
     id={@project.id}
     title={@page_title}
     action={@live_action}
     project={@project}
     patch={~p"/projects/#{@project}"}
+  />
+</.modal>
+
+<.modal
+  :if={@live_action == :upload}
+  id="document-modal"
+  show
+  on_cancel={JS.patch(~p"/projects/#{@project}")}
+>
+  <.live_component
+    module={WorkspaceWeb.DocumentationLive.UploadFormComponent}
+    id={"#{String.replace(@doc_name, " ", "_")}_#{@project.id}"}
+    project={@project}
+    action={@live_action}
+    index={@project.id}
+    doc_name={@doc_name}
+    navigate={~p"/projects/#{@project}"}
+    user={@current_user}
+  />
+</.modal>
+
+<.modal
+  :if={@live_action == :history}
+  id="version-history-modal"
+  show
+  on_cancel={JS.patch(~p"/projects/#{@project}")}
+>
+  <.live_component
+    module={WorkspaceWeb.DocumentationLive.VersionHistoryComponent}
+    id={"#{String.replace(@doc_name, " ", "_")}_#{@project.id}"}
+    project={@project}
+    action={@live_action}
+    index={@project.id}
+    doc_name={@doc_name}
+    navigate={~p"/projects/#{@project}"}
+    user={@current_user}
   />
 </.modal>

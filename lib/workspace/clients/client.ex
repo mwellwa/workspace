@@ -12,7 +12,7 @@ defmodule Workspace.Clients.Client do
     field :sector, :string
     timestamps()
 
-    has_many :projects, Project
+    has_many :project, Project
   end
 
   @doc false

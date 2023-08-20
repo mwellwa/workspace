@@ -42,7 +42,7 @@
   on_cancel={JS.patch(~p"/projects")}
 >
   <.live_component
-    module={WorkspaceWeb.ProjectLive.NewProjectFormComponent}
+    module={WorkspaceWeb.ProjectLive.CreateFormComponent}
     id={@project.id || :new}
     title={@page_title}
     action={@live_action}

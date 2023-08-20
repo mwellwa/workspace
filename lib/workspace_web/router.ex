@@ -73,14 +73,20 @@ defmodule WorkspaceWeb.Router do
       live "/projects", ProjectLive.Index, :index
       live "/projects/new", ProjectLive.Index, :new
       live "/projects/:id/edit", ProjectLive.Index, :edit
+
       live "/projects/:id", ProjectLive.Show, :show
       live "/projects/:id/show/edit", ProjectLive.Show, :edit
+      live "/projects/:id/show/:doc_name/upload", ProjectLive.Show, :upload
+      live "/projects/:id/show/:doc_name/update", ProjectLive.Show, :update
+      live "/projects/:id/show/:doc_name/history", ProjectLive.Show, :history
 
       live "/clients", ClientLive.Index, :index
       live "/clients/new", ClientLive.Index, :new
       live "/clients/:id/edit", ClientLive.Index, :edit
       live "/clients/:id", ClientLive.Show, :show
       live "/clients/:id/show/edit", ClientLive.Show, :edit
+
+      get "/download/:file_uuid", DownloadController, :download
     end
   end
 

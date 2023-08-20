@@ -1,4 +1,4 @@
-defmodule WorkspaceWeb.ProjectLive.NewProjectFormComponent do
+defmodule WorkspaceWeb.ProjectLive.CreateFormComponent do
   use WorkspaceWeb, :live_component
 
   alias Workspace.Projects

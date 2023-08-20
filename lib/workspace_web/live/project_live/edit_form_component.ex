@@ -1,4 +1,4 @@
-defmodule WorkspaceWeb.ProjectLive.FormComponent do
+defmodule WorkspaceWeb.ProjectLive.EditFormComponent do
   use WorkspaceWeb, :live_component
 
   alias Workspace.Projects
@@ -24,7 +24,6 @@ defmodule WorkspaceWeb.ProjectLive.FormComponent do
           <div class="w-1/2">
             <.input field={@form[:name]} type="text" label="Name" />
           </div>
-
         </div>
         <div class="flex gap-x-4">
           <div class="w-4/6">
@@ -64,7 +63,10 @@ defmodule WorkspaceWeb.ProjectLive.FormComponent do
   end
 
   @impl true
-  def handle_event("validate", %{"project" => project_params}, socket) do
+  def handle_event("validate", params, socket) do
+    IO.inspect({:params, params}, label: "============= params ===========")
+    %{"project" => project_params} = params
+
     changeset =
       socket.assigns.project
       |> Projects.change_project(project_params)

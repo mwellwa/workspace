@@ -1,0 +1,26 @@
+<div>
+  <h1>Version History!</h1>
+
+  <div class="relative flex flex-col">
+    <div class="absolute border-r-2 border-gray-200 bottom-1 top-1 left-[12px]">
+    </div>
+    <ul>
+      <%= for document <- @version_history do %>
+        <li>
+          <div class="flex items-center">
+            <div class="list-item-indicator w-7 h-7 rounded-full shrink-0 border-8 bg-neutral-300 border-white z-10">
+            </div>
+            <p class="font-medium py-1 px-2">
+              Uploaded on: <%= document.inserted_at %>
+            </p>
+          </div>
+          <div class="p-3 ml-12 text-neutral-500 border border-gray-300 rounded-md">
+            <.link href={~p"/download/#{document.uuid}"} target="_blank">
+              Download
+            </.link>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -24,8 +24,6 @@ defmodule WorkspaceWeb.ProjectLive.Index do
   end
 
   defp apply_action(socket, :new, _params) do
-    IO.inspect(socket)
-
     socket
     |> assign(:page_title, "New Project")
     |> assign(:project, %Project{})

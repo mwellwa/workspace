@@ -3,6 +3,7 @@ defmodule Workspace.Projects.Project do
   import Ecto.Changeset
 
   alias Workspace.Clients.Client
+  alias Workspace.Documentation.Document
 
   schema "projects" do
     field :contact, :string
@@ -14,6 +15,7 @@ defmodule Workspace.Projects.Project do
     field :status, :string
     field :business_requirement_document, :string
     belongs_to :client, Client
+    has_many :documents, Document
 
     timestamps()
   end
